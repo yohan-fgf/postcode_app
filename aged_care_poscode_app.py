@@ -47,6 +47,12 @@ for _, row in merged.iterrows():
         popup=f"Postcode: {row['postcode']}<br>Count: {row['count']}"
     ).add_to(aus_map)
 
+# === ADD A TITLE TO THE PAGE ===
+title_html = """
+     <h3 align="center" style="font-size:24px"><b>Aged Care Leads</b></h3>
+     """
+aus_map.get_root().html.add_child(Element(title_html))
+
 # Save map to HTML
 aus_map.save(MAP_FILE)
 print(f"Map saved to {MAP_FILE}. Open it in your browser to view.")

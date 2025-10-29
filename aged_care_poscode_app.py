@@ -2,7 +2,7 @@ import pandas as pd
 import folium
 
 # === CONFIG ===
-CSV_FILE = "data.csv"                 # Your CSV with postcode,count
+CSV_FILE = "aged_care_data.csv"                 # Your CSV with postcode,count
 POSTCODE_FILE = "aus_postcodes_full.csv"  # Full postcode coordinates
 MAP_FILE = "aus_postcode_map.html"    # Output HTML file
 

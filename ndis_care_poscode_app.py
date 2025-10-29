@@ -1,0 +1,50 @@
+import pandas as pd
+import folium
+
+# === CONFIG ===
+CSV_FILE = "ndis_care_data.csv"                 # Your CSV with postcode,count
+POSTCODE_FILE = "aus_postcodes_full.csv"  # Full postcode coordinates
+MAP_FILE = "ndis_leads_map.html"    # Output HTML file
+
+# === LOAD USER CSV ===
+df = pd.read_csv(CSV_FILE)
+df["postcode"] = df["postcode"].astype(str)
+
+# === LOAD FULL POSTCODE COORDINATES ===
+postcode_coords = pd.read_csv(POSTCODE_FILE)
+postcode_coords["postcode"] = postcode_coords["postcode"].astype(str)
+
+# Merge on postcode
+merged = df.merge(postcode_coords, on="postcode", how="left")
+
+missing = merged[merged["latitude"].isna()]
+if not missing.empty:
+    print(f"⚠️ Warning: {len(missing)} postcodes not found in the full list:")
+    print(missing["postcode"].tolist())
+
+merged = merged.dropna(subset=["latitude", "longitude"])
+
+# === CREATE FOLIUM MAP ===
+aus_map = folium.Map(location=[-25, 135], zoom_start=4)
+
+# Add circle markers with color coding
+for _, row in merged.iterrows():
+    if row["count"] == 1:
+        color = "green"
+    elif row["count"] == 2:
+        color = "blue"
+    else:
+        color = "red"
+    
+    folium.CircleMarker(
+        location=[row["latitude"], row["longitude"]],
+        radius=5 + row["count"],  # size proportional to count
+        color=color,
+        fill=True,
+        fill_opacity=0.6,
+        popup=f"Postcode: {row['postcode']}<br>Count: {row['count']}"
+    ).add_to(aus_map)
+
+# Save map to HTML
+aus_map.save(MAP_FILE)
+print(f"Map saved to {MAP_FILE}. Open it in your browser to view.")

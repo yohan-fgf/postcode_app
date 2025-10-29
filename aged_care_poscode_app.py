@@ -4,7 +4,7 @@ import folium
 # === CONFIG ===
 CSV_FILE = "aged_care_data.csv"                 # Your CSV with postcode,count
 POSTCODE_FILE = "aus_postcodes_full.csv"  # Full postcode coordinates
-MAP_FILE = "aus_postcode_map.html"    # Output HTML file
+MAP_FILE = "aged_care_leads_map.html"    # Output HTML file
 
 # === LOAD USER CSV ===
 df = pd.read_csv(CSV_FILE)
@@ -33,6 +33,8 @@ for _, row in merged.iterrows():
         color = "green"
     elif row["count"] == 2:
         color = "blue"
+    elif row["count"] == 3:
+        color = "orange"
     else:
         color = "red"
     

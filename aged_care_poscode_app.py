@@ -3,9 +3,9 @@ import folium
 from folium import Map, Element
 
 # === CONFIG ===
-CSV_FILE = "aged_care_data.csv"
-POSTCODE_FILE = "aus_postcodes_full.csv"
-MAP_FILE = "aged_care_leads_map.html"
+CSV_FILE = "data/aged_care_data.csv"
+POSTCODE_FILE = "data/aus_postcodes_full.csv"
+MAP_FILE = "html_outputs/aged_care_leads_map.html"
 
 # === LOAD USER CSV ===
 df = pd.read_csv(CSV_FILE)

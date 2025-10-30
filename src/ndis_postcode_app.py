@@ -4,7 +4,7 @@ from folium import Element
 
 # === CONFIG ===
 CSV_FILE = "data/ndis_data.csv"  # your postcode + count file
-POSTCODE_URL = "https://app.periscopedata.com/api/fivegoodfriends/chart/csv/4635b224-8c2f-10b1-e556-f4598753a7b5"
+POSTCODE_URL = "https://app.periscopedata.com/api/fivegoodfriends/chart/csv/4635b224-8c2f-10b1-e556-f4598753a7b5/2135364"
 MAP_FILE = "output/ndis_leads_map.html"
 
 # === LOAD USER CSV ===

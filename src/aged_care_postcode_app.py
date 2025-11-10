@@ -69,7 +69,7 @@ for _, row in merged.iterrows():
 
 # === ADD TITLE ===
 title_html = """
-     <h3 align="center" style="font-size:24px"><b>NDIS leads</b></h3>
+     <h3 align="center" style="font-size:24px"><b>Aged Care Leads</b></h3>
      """
 aus_map.get_root().html.add_child(Element(title_html))
 
